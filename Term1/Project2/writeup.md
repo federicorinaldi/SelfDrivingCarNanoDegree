@@ -98,7 +98,7 @@ As you can see the layers basically represents the LeNet ConvNet but with dropou
 
 #### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
-To train the model, I used an ....
+I've trained the model using the same parameters as the LeNet lab but I've augmented the number of EPOCHS to 100 as it helped to achieve a better result against the validation set. I've tried also changing the batch size and the learning rate but it was an unsuccessful approach so I rolled back to the LeNet defaults. I haven't tried to change the hyperparameters (mu and sigma). Finally I'm using AdamOptimizer as it was stated in a previous lesson that performs better than gradient descent.
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
@@ -134,7 +134,7 @@ The code for making predictions on my final model is located in the 11th cell of
 
 The top five soft max probabilities for each image are the following:
 
-Image 1:
+For image 1 the model is pretty sure that the category is Speed limit (70km/h) but this is basically because the sign (max weight 6t) is not in any of the categories provided.
 
 | Probability         	|     Prediction	  | 
 |:---------------------:|:-------------------:| 
@@ -144,7 +144,7 @@ Image 1:
 | Road work             |   0.04              |
 | Keep left             |   0.01              |
 
-Image 2:
+For image 2 the model is almost 100% sure that the category is Speed limit (30km/h) and that is the right answer, so a thumbs up here.
 
 | Probability         	|     Prediction	 | 
 |:---------------------:|:------------------:| 
@@ -154,7 +154,7 @@ Image 2:
 | Keep right            | 0                  |
 | General caution       | 0                  |
 
-Image 3:
+For image 3 the model is 100% sure that the sign is Turn right ahead and indeed it is the right class.
 
 | Probability         	|     Prediction	| 
 |:---------------------:|:-----------------:| 
@@ -164,7 +164,7 @@ Image 3:
 | Priority road         |    0              |
 | Ahead only            |    0              |
 
-Image 4:
+For image 4 the model predicted with 75% of certainty that the category should be Speed limit 50 but this is not the case, this is interesting as if we take a look at our dataset there are a lot more training data for 50km/h than for 100km/h so balancing the number of training elements per category may fix this issue.
 
 | Probability         	|     Prediction	| 
 |:---------------------:|:-----------------:| 
@@ -174,7 +174,7 @@ Image 4:
 | Speed limit (60km/h)  | 0.02              |
 | Double curve          | 0.01              |
 
-Image 5:
+For image 5 is exaclty the same case as image 4
 
 | Probability                           |     Prediction	| 
 |:-------------------------------------:|:-----------------:| 
@@ -184,7 +184,7 @@ Image 5:
 | Right-of-way at the next intersection |   7.37            |
 | Beware of ice/snow                    |   0               |
 
-Image 6:
+Lastly for image 6 we found that is similar to image 1: the category Speed limit 130 (the current sign) does not exist.
 
 | Probability         	|     Prediction	| 
 |:---------------------:|:-----------------:| 
