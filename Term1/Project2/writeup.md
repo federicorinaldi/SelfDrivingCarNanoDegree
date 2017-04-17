@@ -14,7 +14,7 @@ The goals / steps of this project are the following:
 
 [image1]: ./examples/distribution.png "Visualization"
 [image2]: ./examples/originals.png "Original images as in the dataset"
-[image3]: ./examples/processed.jpg "Images after pre processing"
+[image3]: ./examples/processed.png "Images after pre processing"
 [image4]: ./examples/sign1.png "6t sign"
 [image5]: ./examples/sign2.png "Max 30"
 [image6]: ./examples/sign3.png "Turn right ahead"
@@ -71,7 +71,7 @@ I've created a pre processing function that I've applied to all of the datasets:
 
 Here is an example of some traffic signs images after processing.
 
-![alt text][image2]
+![alt text][image3]
 
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
