@@ -66,7 +66,7 @@ And here the final warped image:
 
 #### 1. Provide an example of a distortion-corrected image.
 
-The pipeline is found on the cell 14 of the notebook and it's a class named ImageProcessor. The first step of the pipeline is to apply the distortion correction:
+The pipeline is found on the cell 15 of the notebook and it's a class named ImageProcessor. The first step of the pipeline is to apply the distortion correction:
 
 ![alt text][image3]
 
@@ -74,9 +74,9 @@ After this I've followed by applying a gaussian blur to smooth a little bit the 
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
 
-The next step in the pipeline is to convert to YUV and HLS color spaces. There are more examples of the benefits of using this color spaces on the notebook. Then I select the U and V (YUV) and S (HLS) channels and convert to grayscale, I didn't know how to convert to grayscale in this mixed color space but I found the solution on [one of the students submission](https://github.com/GeoffBreemer/SDC-Term1-P4-Advanced-Lane-Finding/blob/master/BinaryThresholder.py#L17).
+The next step in the pipeline is to convert to HLS color space. There are more examples of the benefits of using this color space on the notebook. Then I select the S (HLS) channel and filter it through a threshold.
 
-After that I followed by putting the grayscaled image through the functions abs_sobel_thresh, abs_sobel_thresh, mag_thresh, dir_threshold and hls_select all of those discussed during the course. I've combined all of those images and ended up with my binary image:
+After that I followed by putting the grayscaled image through the functions abs_sobel_thresh, abs_sobel_thresh, mag_thresh, dir_threshold all of those discussed during the course. I've combined all of those images and ended up with my binary image:
 
 ![alt text][image9]
 
@@ -112,17 +112,17 @@ I verified that my perspective transform was working as expected by drawing the 
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
-Then I've followed the course videos and fit my lane lines with a 2nd order polynomial and used sliding window the code is inside the `find_lanes` method of the class ImageProcessor in the 14th cell of the notebook. I've also created a helper method `plot_lanes` to show how the innner workings of the find lane algorithm works. This is the result:
+Then I've followed the course videos and fit my lane lines with a 2nd order polynomial and used sliding window the code is inside the `find_lanes` method of the class ImageProcessor in the 15th cell of the notebook. I've also created a helper method `plot_lanes` to show how the inner workings of the find lane algorithm works. This is the result:
 
 ![alt text][image17]
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
-To find the curvature of the lane and other metrics I've used [the work of the user ctsuu](https://github.com/ctsuu/Advanced-Lane-Finding/blob/master/Advanced-Lane-Finding-Subimission.ipynb) that led me to create the method `__get_rad_po` that is used by the `draw_lanes` method and it returns camera_pos, turning_radius, steering_angle. You can see those values on the next point.
+To find the curvature of the lane and the position of the camera I created the method `__get_rad_po` that is used by `draw_lanes` it returns the camera position and the left and right curvature radius. You can see those values on the next point.
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
-I implemented this step in the cell 14 of the jupyter notebook in the function `draw_lanes`.  Here is an example of my result on a test image:
+I implemented this step in the cell 15 of the jupyter notebook in the function `draw_lanes`.  Here is an example of my result on a test image:
 
 ![alt text][image18]
 
