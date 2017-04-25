@@ -78,6 +78,28 @@ The next step in the pipeline is to convert to HLS color space. There are more e
 
 After that I followed by putting the grayscaled image through the functions abs_sobel_thresh, abs_sobel_thresh, mag_thresh, dir_threshold all of those discussed during the course. I've combined all of those images and ended up with my binary image:
 
+#### Update after review
+
+I took the advice of the Udacity reviewer and instead of calculating the gradients I'm using color thresholding in all the RGB, HSV and HSL channels for your yellows and whites:
+
+```python
+HSV = cv2.cvtColor(your_image, cv2.COLOR_RGB2HSV)
+
+# For yellow
+yellow = cv2.inRange(HSV, (20, 100, 100), (50, 255, 255))
+
+# For white
+sensitivity_1 = 68
+white = cv2.inRange(HSV, (0,0,255-sensitivity_1), (255,20,255))
+
+sensitivity_2 = 60
+HSL = cv2.cvtColor(your_image, cv2.COLOR_RGB2HLS)
+white_2 = cv2.inRange(HSL, (0,255-sensitivity_2,0), (255,255,sensitivity_2))
+white_3 = cv2.inRange(your_image, (200,200,200), (255,255,255))
+
+bit_layer = yellow | white | white_2 | white_3
+```
+
 ![alt text][image9]
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
@@ -118,7 +140,7 @@ Then I've followed the course videos and fit my lane lines with a 2nd order poly
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
-To find the curvature of the lane and the position of the camera I created the method `__get_rad_po` that is used by `draw_lanes` it returns the camera position and the left and right curvature radius. You can see those values on the next point.
+To find the curvature of the lane and the position of the camera I created the method `__get_rad_po` that is used by `draw_lanes` it returns the camera position and curvature radius. You can see those values on the next point.
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
